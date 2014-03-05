@@ -61,6 +61,7 @@
                                     "protocol/envelope",
                                     "protocol/publication",
                                     "protocol/subscription",
+                                    "protocol/rpc",
                                     "protocol/client",
                                     "transport/transport"
         ]},
@@ -106,4 +107,3 @@
         "build/CHANGELOG.md":           "CHANGELOG.md",
         "build/README.md":              "README.md"
 } } } }
-

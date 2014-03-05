@@ -275,7 +275,6 @@ Faye.Client = Faye.Class({
 
     this.connect(function() {
       this.info('Client ? queueing published message to ?: ?', this._clientId, channel, data);
-
       this._send({
         channel:  channel,
         data:     data,
@@ -405,4 +404,4 @@ Faye.extend(Faye.Client.prototype, Faye.Deferrable);
 Faye.extend(Faye.Client.prototype, Faye.Publisher);
 Faye.extend(Faye.Client.prototype, Faye.Logging);
 Faye.extend(Faye.Client.prototype, Faye.Extensible);
-
+Faye.extend(Faye.Client.prototype, Faye.RPC);
