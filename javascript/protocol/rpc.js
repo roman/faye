@@ -31,15 +31,8 @@ Faye.RPC = {
     this.subscribe(channel, function(req) {
 
       function handleArray(result) {
-        var resp = null;
-        if (result[0]) {
-          resp = { "successful": true, "payload": result[1], "msgId": req.msgId };
-          self.publish(req.replyChannel, resp);
-        }
-        else {
-          resp = { "succesful": false, "payload": result[1], "msgId": req.msgId };
-          self.publish(req.replyChannel, resp);
-        }
+        var resp = { "successful": result[0], "payload": result[1], "msgId": req.msgId };
+        self.publish(req.replyChannel, resp);
       }
 
       function handlePromise(result) {
@@ -48,7 +41,7 @@ Faye.RPC = {
             handleArray([true, payload]);
           },
           function(err) {
-            handleArray([false, payload]);
+            handleArray([false, err]);
           });
       }
 
@@ -58,7 +51,7 @@ Faye.RPC = {
       } else if (result0 instanceof Array) {
         handleArray(result0);
       } else {
-          throw("Invalid RPC result, must be an Array or Deferrable");
+        throw("Invalid RPC result, must be an Array or Deferrable");
       }
     });
   }
